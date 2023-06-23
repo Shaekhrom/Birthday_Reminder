@@ -1,19 +1,21 @@
 import * as React from 'react';
 import { View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Header from '../header/Header';
 
-function HomeScreen() {
+function Home() {
   const navigation = useNavigation();
 
   return (
     <View>
-      <Text>pantalla de perfil</Text>
+       <Header />
+      <Text>pantalla principal</Text>
       <Button
-        title="Ir a Acerca de"
+        title="refrescar"
         onPress={() => navigation.navigate('Home')}
       />
     </View>
   );
 }
 
-export default HomeScreen;
+export default Home;
