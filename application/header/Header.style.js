@@ -2,26 +2,28 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
+        
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 16,
-        marginTop: 30,
+        paddingHorizontal: 5,
+        
         backgroundColor: '#FEC8D8',
-        zIndex: 1 //change background priority
+        zIndex: 1, //change background priority
+        height: 130,
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        borderColor: 'black',
+        borderBottomWidth: 2,
     },
     logoImage: {
-        resizeMode: 'contain',
         width: 200,
-        height: 100,
-        marginTop: -10
+        height: 120,
+        resizeMode: "contain"
     },
-    headerIcons: {
-        marginTop: 18
-    },
-    copyright: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0
+    menuButton: {
+        borderWidth: 2.5, // Establece el grosor del borde
+        borderColor: 'black', // Establece el color del borde
+        borderRadius: 15
     }
   });
   

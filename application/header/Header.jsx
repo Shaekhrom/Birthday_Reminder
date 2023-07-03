@@ -19,24 +19,19 @@ function Header() {
     <View style={styles.container}>
       {/* Navigation  */ }
       <TouchableOpacity onPress={toggleMenu}>
-        <AntDesign style={styles.headerIcons} name="bars" size={40} color="black" />
+        <AntDesign style={styles.menuButton} name="bars" size={45} color="black" />
       </TouchableOpacity>
       {isMenuOpen && <Menu />}
 
       {/* Logo that reloads the page  */ }
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-        <Image style={styles.logoImage} source={require('../../assets/images/logoWithoutBackground.png')} />
+        <Image style={styles.logoImage} source={require('../../assets/images/logo2.png')} />
       </TouchableOpacity>
 
       {/* Profile picture (tap to go to edit profile page) */ }
       <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-        <FontAwesome style={styles.headerIcons} name="user-circle" size={40} color="black" />
+        <FontAwesome name="user-circle" size={50} color="black" />
       </TouchableOpacity>
-
-      {/* copyright  */ }
-      <View style={styles.copyright}>
-        <Text>Created by @Shaekhrom (Alejandro Barbacil)</Text>
-      </View>
 
     </View>
   );
