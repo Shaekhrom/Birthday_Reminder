@@ -11,7 +11,7 @@ const Menu = () => {
   return (
     <View style={styles.menuContainer}> 
       {/* button to go to the contact list screen  */ }
-      <TouchableOpacity onPress={() => navigation.navigate('Contacts')}>
+      <TouchableOpacity onPress={() => navigation.navigate('ContactList')}>
         <View style={styles.miniContainers}>
           <Text> Contact List </Text>
         </View>

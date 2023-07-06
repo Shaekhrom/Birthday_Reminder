@@ -1,91 +1,59 @@
-import { View, Text, Button, TextInput } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Header from '../header/Header';
-import styles from './Contact.style';
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
+import { View, TextInput, Button, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Header from '../header/Header';
+import { useNavigation } from '@react-navigation/native';
 
-
-function HomeScreen() {
+const CreateContactScreen = () => {
+  const [name, setName] = useState('');
+  const [birthday, setBirthday] = useState('');
   const navigation = useNavigation();
 
-  const [name, setName] = useState('');
-  const [photo, setPhoto] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [interests, setInterests] = useState('');
+  useEffect(() => {
+    navigation.addListener('focus', resetForm);
+  }, [navigation]);
 
-  const handleSaveContact = async () => {
-    try {
-      // Obtén la lista actual de contactos almacenados en AsyncStorage
-      const contacts = await AsyncStorage.getItem('contacts');
-      let parsedContacts = [];
-      if (contacts) {
-        parsedContacts = JSON.parse(contacts);
-      }
-
-      // Crea un nuevo objeto de contacto
-      const newContact = {
-        name,
-        photo,
-        birthday,
-        interests,
-      };
-
-      // Agrega el nuevo contacto a la lista
-      parsedContacts.push(newContact);
-
-      // Guarda la lista actualizada de contactos en AsyncStorage
-      await AsyncStorage.setItem('contacts', JSON.stringify(parsedContacts));
-
-      // Reinicia los valores de los campos de entrada
-      setName('');
-      setPhoto('');
-      setBirthday('');
-      setInterests('');
-
-      // Puedes mostrar una notificación o redirigir a otra pantalla después de guardar exitosamente el contacto
-    } catch (error) {
-      console.log('Error al guardar el contacto:', error);
-    }
+  const resetForm = () => {
+    setName('');
+    setBirthday('');
   };
 
+  const saveContact = async () => {
+    try {
+      const contact = { name, birthday };
+      let storedContacts = await AsyncStorage.getItem('contacts');
+      let contacts = [];
+      if (storedContacts) {
+        contacts = JSON.parse(storedContacts);
+      }
+      contacts.push(contact);
+      await AsyncStorage.setItem('contacts', JSON.stringify(contacts));
+      Alert.alert('Contacto guardado correctamente');
+      resetForm();
+      navigation.navigate('ContactList'); // Redirigir a la pantalla de lista
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Error al guardar el contacto');
+    }
+  };
+  
 
   return (
     <View>
-       <Header />
-          <View>
-              <Text> Photo </Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Photo"
-                value={photo}
-                onChangeText={setPhoto}
-              />
-              <Text> Name </Text>
-              <TextInput
-                style={styles.input}
-                placeholder="name"
-                value={name}
-                onChangeText={setName}
-              />
-              <Text> Birthday date </Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Birthday date"
-                value={birthday}
-                onChangeText={setBirthday}
-              />
-              <Text> Personal interests </Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Personal interests"
-                value={interests}
-                onChangeText={setInterests}
-              />
-            <Button title="Save contact" onPress={handleSaveContact} />
-        </View>  
+      <Header/>
+      <TextInput
+        placeholder="Nombre"
+        value={name}
+        onChangeText={text => setName(text)}
+      />
+      <TextInput
+        placeholder="Fecha de cumpleaños"
+        value={birthday}
+        onChangeText={text => setBirthday(text)}
+      />
+      <Button title="Guardar contacto" onPress={saveContact} />
     </View>
   );
-}
+};
 
-export default HomeScreen;
+export default CreateContactScreen;

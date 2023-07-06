@@ -9,10 +9,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HeaderMain from './application/header/Header';
 import ProfileScreen from './application/profile/Profile';
 import HomeScreen from './application/home/Home';
-import ContactScreen from './application/agenda/ContactList';
+import ContactList from './application/agenda/ContactList';
 import EventScreen from './application/eventManager/EventManager';
 import SettingsScreen from './application/settingsApp/Settings';
-import EditContact from './application/contact/Contact';
+import NewContact from './application/contact/Contact';
+import EditContactScreen from './application/editContact/EditContactScreen';
 
 const Stack = createStackNavigator();
 
@@ -43,8 +44,8 @@ function App() {
 
           {/*contacts screen*/}
           <Stack.Screen
-            name="Contacts"
-            component={ContactScreen}
+            name="ContactList"
+            component={ContactList}
             options={{ headerShown: false }} // Oculta el encabezado en la pantalla About
           />
 
@@ -62,10 +63,17 @@ function App() {
             options={{ headerShown: false }} // Oculta el encabezado en la pantalla About
           />
 
+          {/*create contact screen*/}
+          <Stack.Screen
+            name="CreateContact"
+            component={NewContact}
+            options={{ headerShown: false }} // Oculta el encabezado en la pantalla About
+          />
+
           {/*contact edit screen*/}
           <Stack.Screen
-            name="Contact"
-            component={EditContact}
+            name="EditContact"
+            component={EditContactScreen}
             options={{ headerShown: false }} // Oculta el encabezado en la pantalla About
           />
 
