@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { AntDesign } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons'; 
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -14,10 +14,29 @@ import EventScreen from './application/eventManager/EventManager';
 import SettingsScreen from './application/settingsApp/Settings';
 import NewContact from './application/contact/Contact';
 import EditContactScreen from './application/editContact/EditContactScreen';
+import LoadingScreen from './application/loadingScreen/LoadingScreen';
 
 const Stack = createStackNavigator();
 
+
+
 function App() {
+
+  
+    const [isLoading, setIsLoading] = useState(true);
+  
+    useEffect(() => {
+      // Simula una carga inicial
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 3000);
+    }, []);
+  
+    if (isLoading) {
+      return <LoadingScreen />;
+    }
+
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -73,6 +92,13 @@ function App() {
           {/*contact edit screen*/}
           <Stack.Screen
             name="EditContact"
+            component={EditContactScreen}
+            options={{ headerShown: false }} // Oculta el encabezado en la pantalla About
+          />
+
+          {/*loading screen*/}
+          <Stack.Screen
+            name="Loading"
             component={EditContactScreen}
             options={{ headerShown: false }} // Oculta el encabezado en la pantalla About
           />

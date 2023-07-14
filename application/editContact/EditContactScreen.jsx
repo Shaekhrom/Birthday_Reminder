@@ -7,10 +7,11 @@ const EditContactScreen = ({ route, navigation }) => {
   const { contact } = route.params;
   const [name, setName] = useState(contact.name);
   const [birthday, setBirthday] = useState(contact.birthday);
+  const [interests, setInterests] = useState(contact.interests);
 
   const saveContact = async () => {
     try {
-      const updatedContact = { ...contact, name, birthday };
+      const updatedContact = { ...contact, name, birthday, interests };
       const updatedContacts = await updateContactList(updatedContact);
       await AsyncStorage.setItem('contacts', JSON.stringify(updatedContacts));
       Alert.alert('Contacto actualizado correctamente');
@@ -53,6 +54,11 @@ const EditContactScreen = ({ route, navigation }) => {
         placeholder="Fecha de cumpleaños"
         value={birthday}
         onChangeText={text => setBirthday(text)}
+      />
+      <TextInput
+        placeholder="Personal preferences"
+        value={interests}
+        onChangeText={text => setInterests(text)}
       />
       <Button title="Guardar contacto" onPress={saveContact} />
     </View>
