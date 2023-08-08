@@ -27,7 +27,7 @@ const ContactListScreen = ({ navigation }) => {
       }
     } catch (error) {
       console.log(error);
-      Alert.alert('Error al cargar los contactos');
+      Alert.alert('Error loading the contact list');
     }
   };
 
@@ -68,12 +68,12 @@ const ContactListScreen = ({ navigation }) => {
         contacts = JSON.parse(storedContacts);
         contacts = contacts.filter((c) => c.id !== contact.id);
         await AsyncStorage.setItem('contacts', JSON.stringify(contacts));
-        Alert.alert('Contacto eliminado correctamente');
+        Alert.alert('Contact deleted succesfully');
         loadData();
       }
     } catch (error) {
       console.log(error);
-      Alert.alert('Error al eliminar el contacto');
+      Alert.alert('Error deleting contact, try again!');
     }
   };
 
