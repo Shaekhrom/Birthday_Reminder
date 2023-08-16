@@ -15,6 +15,8 @@ import SettingsScreen from './application/settingsApp/Settings';
 import NewContact from './application/contact/Contact';
 import EditContactScreen from './application/editContact/EditContactScreen';
 import LoadingScreen from './application/loadingScreen/LoadingScreen';
+import newEventScreen from './application/newEvent/newEvent';
+import editEventScreen from './application/editEvent/EditEventScreen'
 
 const Stack = createStackNavigator();
 
@@ -99,7 +101,21 @@ function App() {
           {/*loading screen*/}
           <Stack.Screen
             name="Loading"
-            component={EditContactScreen}
+            component={LoadingScreen}
+            options={{ headerShown: false }} // Oculta el encabezado en la pantalla About
+          />
+
+          {/*New event screen*/}
+          <Stack.Screen
+            name="newEventScreen"
+            component={newEventScreen}
+            options={{ headerShown: false }} // Oculta el encabezado en la pantalla About
+          />
+
+          {/*Edit event screen*/}
+          <Stack.Screen
+            name="EditEventScreen"
+            component={editEventScreen}
             options={{ headerShown: false }} // Oculta el encabezado en la pantalla About
           />
 

@@ -106,7 +106,7 @@ const ContactListScreen = ({ navigation }) => {
           {/* Contact list text */}
           <View style={styles.itemAligner}>
             <View style={styles.contactListLetterBox}>
-              <Text>CONTACT LIST</Text>
+              <Text style={{fontSize: 25}}>CONTACT LIST</Text>
             </View>
 
             <View style={{ height: 15 }} />

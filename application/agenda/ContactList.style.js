@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 30,
         overflow: 'hidden',
-        width: '95%'
+        width: '95%',
         
     },
 
